@@ -1,0 +1,45 @@
+
+body{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    margin:0;
+    font-family: Calibri;
+}
+.row{
+    width: 100%;
+    height: 25%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    border-collapse: collapse;
+}
+.cell{
+    width:fit-content;
+    border: 3px solid black;
+    border-collapse: collapse;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -1px -1px -1px -1px;
+    padding: 10px;
+}
+img{
+    height: 80%;
+    width: auto;
+}
+.imgcell{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.podpis{
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

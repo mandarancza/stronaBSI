@@ -1,0 +1,49 @@
+body{
+    position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Calibri;
+}
+.main{
+    text-align: center;
+    color: purple;
+    color: green;
+    flex-direction: column;
+    font-size: 25px;
+    
+}
+.mytitle{
+
+    width: 100%;
+    height: auto;
+    font-size: 40px;
+    font-weight: bold;
+}
+.links{
+    width: 30vw;
+
+    border: 2px solid green;
+    margin:10px 0px 10px 0px;
+    border-radius: 100px;
+}
+.mainpageitems{
+    background-color: green;
+}
+a.fill{
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: black;
+    border-radius: 100px;
+}
+a.fill:hover{
+    background-color:rgb(228, 228, 228);
+    transition-duration: 200ms;
+}

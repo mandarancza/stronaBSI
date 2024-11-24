@@ -1,0 +1,119 @@
+###### formsphp.php ######
+<?php
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $imie = htmlspecialchars(string: $_POST['imie']);
+                $nazwisko = htmlspecialchars(string: $_POST['nazwisko']);
+                $ulica = htmlspecialchars(string: $_POST['ulica']);
+                $dom = htmlspecialchars(string: $_POST['dom']);
+                $mieszkanie = htmlspecialchars(string: $_POST['mieszkanie']);
+                $telefon = htmlspecialchars(string: $_POST['telefon']);
+                $dataur = htmlspecialchars(string: $_POST['dataur']);
+                $prawo = htmlspecialchars(string: $_POST['prawo']);
+                $haslo = htmlspecialchars(string: $_POST['haslo']);
+                $plec = htmlspecialchars(string: $_POST['plec']);
+                $miasto = htmlspecialchars(string: $_POST['miasto']);
+                $country = htmlspecialchars(string: $_POST['country']);
+
+                echo "<p><strong>Imię:</strong> " . $imie . "</p>";
+                echo "<p><strong>Nazwisko:</strong> " . $nazwisko . "</p>";
+                echo "<p><strong>Ulica:</strong> " . $ulica . "</p>";
+                echo "<p><strong>Dom:</strong> " . $dom . "</p>";
+                echo "<p><strong>Mieszkanie:</strong> " . $mieszkanie . "</p>";
+                echo "<p><strong>Numer telefonu:</strong> " . $telefon . "</p>";
+                echo "<p><strong>Data urodzenia:</strong> " . $dataur . "</p>";
+                echo "<p><strong>Czy posiadasz prawo jazdy?:</strong> ";
+                if($prawo == 'on'){
+                    echo "tak";
+                }
+                else{
+                    echo "nie";
+                }
+                echo "</p>";
+                echo "<p><strong>Hasło:</strong> " . $haslo . "</p>";
+
+                
+                echo "<p><strong>Płeć:</strong> " . $plec . "</p>";
+                echo "<p><strong>Miasto:</strong> " . $miasto . "</p>";
+                echo "<p><strong>Kraj:</strong> " . $country . "</p>";
+
+
+                echo "<p><a href='formsphp.php'>Wprowadź ponownie</a></p>";
+
+            } else {
+                echo "<p>Wypełnij formularz.</p>";
+            }
+            
+        ?>
+
+
+
+
+
+
+
+###### index.php ######
+
+<?php
+session_start();
+$iflogged = '';
+
+if (isset($_SESSION['username'])) {
+    header('Location: formsphp.php');
+}
+else{
+    $iflogged = 
+    '<div class="title">Logowanie</div>
+        <form action="" method="post">
+            <label for="user">Login</label>
+            <input type="text" id="user" name="user" value="lubiegofry2">
+            <label for="pass">Hasło</label>
+            <input type="password" id="pass" name="pass" value="Haslo123">
+            <div class="buttonwrap">
+                <button type="submit">Zaloguj</button>
+            </div>
+        </form>';
+    
+    $users = [
+        'lubiegofry2' => 'Haslo123'
+    ];
+    
+    
+    
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $username = $_POST['user'];
+        $password = $_POST['pass'];
+    
+        if (isset($users[$username]) && $users[$username] === $password) {
+            $_SESSION['username'] = $username;
+            header('Location: formsphp.php');
+            exit();
+        } 
+    }
+}
+
+?>
+
+
+###### logout.php ######
+
+<?php
+session_start();
+session_unset();
+session_destroy();
+header("Location: index.php");
+exit();
+?>
+
+
+
+
+
+
+###### reszta stron ######
+
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: index.php');
+}
+?>

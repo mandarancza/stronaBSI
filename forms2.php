@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: index.php');
+}
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,11 +19,6 @@
             justify-content: center;
         }
         form{
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        #formdiv{
             display: flex;
             flex-direction: column;
             width: 25%;
@@ -53,90 +53,10 @@
             display: flex;
             justify-content: center;
         }
-        #passdesc{
-            font-size: small;
-        }
     </style>
-    <script>
-        
-
-        function validate(){
-            let good = true;
-            let name = /^[A-Za-zÀ-ÿ]+$/;
-            let street = /^[A-Za-zÀ-ÿ0-9\s,.'/-]+$/;
-            let dom = /^[A-Za-z0-9]+$/
-            let numer = /^\d{9}$/
-            let password = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/
-            let city = /^[A-Za-zÀ-ÿ\s-]+$/
-
-            document.getElementById("imie").style.border = "";
-            document.getElementById("nazwisko").style.border = "";
-            document.getElementById("ulica").style.border = "";
-            document.getElementById("dom").style.border = "";
-            document.getElementById("mieszkanie").style.border = "";
-            document.getElementById("haslo").style.border = "";
-            document.getElementById("miasto").style.border = "";
-            document.getElementById("plecdiv").style.border = "";
-
-            if(!name.test(document.getElementById("imie").value)){
-                good = false;
-                document.getElementById("imie").style.border = "red solid 3px";
-            }
-
-            if(!name.test(document.getElementById("nazwisko").value)){
-                good = false;
-                document.getElementById("nazwisko").style.border = "red solid 3px";
-            }
-
-            if(!street.test(document.getElementById("ulica").value)){
-                good = false;
-                document.getElementById("ulica").style.border = "red solid 3px";
-            }
-
-            if(!dom.test(document.getElementById("dom").value)){
-                good = false;
-                document.getElementById("dom").style.border = "red solid 3px";
-            }
-
-            if(!dom.test(document.getElementById("mieszkanie").value)){
-                good = false;
-                document.getElementById("mieszkanie").style.border = "red solid 3px";
-            }
-
-            if(!numer.test(document.getElementById("telefon").value)){
-                good = false;
-                document.getElementById("telefon").style.border = "red solid 3px";
-            }
-
-            if(!password.test(document.getElementById("haslo").value)){
-                good = false;
-                document.getElementById("haslo").style.border = "red solid 3px";
-            }
-
-            if(!city.test(document.getElementById("miasto").value)){
-                good = false;
-                document.getElementById("miasto").style.border = "red solid 3px";
-            }
-
-            if(!(document.getElementById("m").checked || document.getElementById("k").checked || document.getElementById("i").checked)){
-                good = false;
-                document.getElementById("plecdiv").style.border = "red solid 3px";
-            }
-
-            
-            if(good){
-                if(!alert('Wysłano!')){
-                    //window.location.reload();
-                    document.getElementById("formularz").submit();
-                }
-            }
-        }
-
-    </script>
 </head>
 <body>
-    <div id="formdiv">
-    <form id="formularz">
+    <form>
 
         <label for="imie">Imie</label>
         <input type="text" id="imie" name="imie">
@@ -155,7 +75,7 @@
         <!--<br>-->
         
         <label for="mieszkanie">Mieszkanie</label>
-        <input type="text" id="mieszkanie" name="mieszkanie">
+        <input type="number" id="mieszkanie" name="mieszkanie">
         <!--<br>-->
 
         <label for="telefon">Telefon</label>
@@ -165,10 +85,6 @@
         <label for="dataur">Data urodzenia</label>
         <input type="date" id="dataur" name="dataur">
         <!--<br>-->
-        <script>
-            var today = new Date().toISOString().split('T')[0];
-            document.getElementById("dataur").setAttribute('max', today);
-        </script>
 
         <label for="prawo">Czy posiadasz prawo jazdy?</label>
         <div>
@@ -179,18 +95,9 @@
         <label for="haslo">Hasło</label>
         <input type="password" id="haslo" name="haslo">
         <!--<br>-->
-        <div id="passdesc">
-            <ul>
-                <li>Conjamniej 8 znaków</li>
-                <li>Conjamniej 1 duża litera</li>
-                <li>Conjamniej 1 mała litera</li>
-                <li>Conajmniej 1 cyfra</li>
-                <li>Conjamniej 1 znak specjalny</li>
-            </ul>
-        </div>
 
         <label for="plec">Płeć</label>
-        <div id="plecdiv">
+        <div>
         <input type="radio" id="m" name="plec" value="m">Mężczyzna
         <input type="radio" id="k" name="plec" value="k">Kobieta
         <input type="radio" id="i" name="plec" value="i">Inne
@@ -449,12 +356,9 @@
             <option value="Zimbabwe">Zimbabwe</option>
         </select>
         <!--<br>-->
-        
-    </form>
-    <div class="buttonwrap">
-        <button onclick="validate()">Zatwierdź</button>
+        <div class="buttonwrap">
+        <button type="submit">Zatwierdź</button>
         </div>
-    </div>
-    
+    </form>
 </body>
 </html>

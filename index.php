@@ -1,13 +1,9 @@
 <?php
 session_start();
 $iflogged = '';
-//$_SESSION['message'] = '';
 
 if (isset($_SESSION['username'])) {
-    $iflogged = 
-    "<h2>Witaj, ".$_SESSION['username']."!</h2>
-    <p>Tajne dane jedynie dla zalogowanych użytkowników.</p>
-    <a href='logout.php'>Logout</a>";
+    header('Location: formsphp.php');
 }
 else{
     $iflogged = 
@@ -34,7 +30,7 @@ else{
     
         if (isset($users[$username]) && $users[$username] === $password) {
             $_SESSION['username'] = $username;
-            header('Location: '.$_SERVER['REQUEST_URI']);
+            header('Location: formsphp.php');
             exit();
         } 
     }

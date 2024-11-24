@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: index.php');
+}
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -65,6 +70,23 @@
             border-radius: 10px;
             background-color: rgb(235, 235, 235);
             margin-left: 15px;
+        }
+        .side{
+            display: flex;
+            flex-direction: column;
+            width: 10%;
+            padding: 20px;
+        }
+        .side button{
+            background-color: red;
+            margin: 10px;
+        }
+        .linkk{
+            text-decoration: none;
+            color: black;
+            font-size: 25px;
+            font-family: calibri;
+            border: 2px dashed green;
         }
     </style>
     <script>
@@ -508,6 +530,12 @@
             }
             
         ?>
+    </div>
+    <div class="side">
+        <a href="glowna.php" class="linkk">Strona Główna</a>
+        <button onclick="window.location.href='logout.php'">Wyloguj</button>
+
+        <a href="kodphp.txt" class="linkk">kod php .txt</a>
     </div>
 </body>
 </html>

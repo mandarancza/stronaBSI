@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +16,9 @@
 <body>
     <div class="main">
         <div class="mytitle main">
-            Strona</br>Filipa Obuchowicza
+            <p><?php echo 'Witaj '.$_SESSION['username'].'!';?></br>
+            Strona</br>Filipa Obuchowicza</br>
+            <a href='logout.php'>Wyloguj</a>
         </div>
         <div class="links mainipageitems">
             <a class="fill" href=paragraphs.html>Zad 2. Paragrafy</a>

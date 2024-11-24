@@ -501,7 +501,7 @@
                 echo "<p><strong>Kraj:</strong> " . $country . "</p>";
 
 
-                echo "<p><a href='login.php'>Wprowadź ponownie</a></p>";
+                echo "<p><a href='formsphp.php'>Wprowadź ponownie</a></p>";
 
             } else {
                 echo "<p>Wypełnij formularz.</p>";
